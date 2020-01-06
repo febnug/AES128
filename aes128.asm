@@ -10,7 +10,7 @@
 ;
 ; x86_64 :
 ; nasm -f elf64 aes128.asm
-; ld -N -s -m elf_x86_64 -o aes128 aes128.o
+; ld -N -s -m elf_x86_64 -o aes128 aes128.o --omagic
 
 global _start
 section .text
