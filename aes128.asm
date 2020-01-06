@@ -1,3 +1,17 @@
+; AES-128 asm
+; seperti "self-modifying" code
+;
+;
+; compile dengan :
+;
+; x86 :
+; nasm -f elf aes128.asm
+; ld -o aes128 aes128.o --omagic
+;
+; x86_64 :
+; nasm -f elf64 aes128.asm
+; ld -N -s -m elf_x86_64 -o aes128 aes128.o
+
 global _start
 section .text
 
@@ -11,7 +25,7 @@ mov     ah, 0x73
 roundloop:
 shr     ax, 7
 div     bl
-mov     byte [sdfsdf+5], ah
+mov     byte [sdfsdf+5], ah       ; dunno ... kenapa segfault disini ?
 
 sdfsdf:
 aeskeygenassist xmm1, xmm0, 0x45
