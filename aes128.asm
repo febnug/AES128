@@ -1,5 +1,4 @@
 ; AES-128 asm
-; seperti "self-modifying" code
 ;
 ;
 ; compile dengan :
@@ -7,6 +6,8 @@
 ; x86 :
 ; nasm -f elf aes128.asm
 ; ld -o aes128 aes128.o --omagic
+;
+; note : CPU 32-bit ga support aes, jadi bakalan segfault, solusinya harus install OS 64-bit pake qemu
 ;
 ; x86_64 :
 ; nasm -f elf64 aes128.asm
@@ -25,9 +26,9 @@ mov     ah, 0x73
 roundloop:
 shr     ax, 7
 div     bl
-mov     byte [sdfsdf+5], ah       ; dunno ... kenapa segfault disini ?
+mov     byte [loc_7cb9+5], ah  
 
-sdfsdf:
+loc_7cb9:
 aeskeygenassist xmm1, xmm0, 0x45
 pshufd  xmm1, xmm1, 0xff
 
